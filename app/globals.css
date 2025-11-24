@@ -78,6 +78,16 @@
     --sidebar-ring: oklch(0.708 0 0);
 }
 
+:root {
+    --font-geist-sans:
+        "Geist", ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+    --font-geist-mono:
+        "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+}
+
 .dark {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
@@ -88,6 +98,7 @@
     --primary: oklch(0.922 0 0);
     --primary-foreground: oklch(0.205 0 0);
     --secondary: oklch(0.269 0 0);
+    --tertiary: oklch(0.569 0 0);
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.269 0 0);
     --muted-foreground: oklch(0.708 0 0);

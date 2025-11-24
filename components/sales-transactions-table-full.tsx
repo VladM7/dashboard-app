@@ -449,7 +449,7 @@ function SalesTransactionsTableFullClient() {
       {/* Header / Controls */}
       <div className="flex flex-wrap items-center justify-between gap-4 px-2">
         <div className="space-y-1">
-          <h2 className="text-lg font-semibold">Sales</h2>
+          <h2 className="text-lg font-semibold">Recent Sales</h2>
           <p className="text-xs text-muted-foreground">
             Loaded {allRows.length} rows | Selected {selected.size}
           </p>
