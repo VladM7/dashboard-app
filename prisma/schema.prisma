@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model sales_transactions {
+  transaction_id              Int      @id @default(autoincrement())
+  commercial_responsible      String
+  order_type                  String
+  supplier                    String
+  billing_sign                String?
+  delivery_client             String
+  delivery_circuit            String
+  product_category            String
+  product_family              String
+  product_reference           String
+  delivery_date               DateTime
+  quantity                    Decimal?
+  sales_altona                Decimal?
+  purchases_altona_eur        Decimal?
+  purchases_purchase_currency Decimal?
+  purchase_currency           String?
+  direct_sales                Decimal
+  commission_altona           Decimal
+  total_pub_budget            Decimal?
+  rfa_on_resale_orders        Decimal?
+  logistics_cost_altona       Decimal?
+  prescriber_commission       Decimal?
+  total_net_margin_eur        Decimal
+
+}

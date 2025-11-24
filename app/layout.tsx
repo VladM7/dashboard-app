@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 // import { Geist } from "next/font/google";
-import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import "./globals.css";
 
 export const metadata: Metadata = {
