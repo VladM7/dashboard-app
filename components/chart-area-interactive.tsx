@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import * as React from "react";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-import { useIsMobile } from "@/hooks/use-mobile"
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Card,
   CardAction,
@@ -11,201 +11,279 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
+
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+  ChartLegend,
+  ChartLegendContent,
+} from "@/components/ui/chart";
+
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+} from "@/components/ui/select";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-export const description = "An interactive area chart"
+export const description = "An interactive area chart for net profit margin";
 
-const chartData = [
-  { date: "2024-04-01", desktop: 222, mobile: 150 },
-  { date: "2024-04-02", desktop: 97, mobile: 180 },
-  { date: "2024-04-03", desktop: 167, mobile: 120 },
-  { date: "2024-04-04", desktop: 242, mobile: 260 },
-  { date: "2024-04-05", desktop: 373, mobile: 290 },
-  { date: "2024-04-06", desktop: 301, mobile: 340 },
-  { date: "2024-04-07", desktop: 245, mobile: 180 },
-  { date: "2024-04-08", desktop: 409, mobile: 320 },
-  { date: "2024-04-09", desktop: 59, mobile: 110 },
-  { date: "2024-04-10", desktop: 261, mobile: 190 },
-  { date: "2024-04-11", desktop: 327, mobile: 350 },
-  { date: "2024-04-12", desktop: 292, mobile: 210 },
-  { date: "2024-04-13", desktop: 342, mobile: 380 },
-  { date: "2024-04-14", desktop: 137, mobile: 220 },
-  { date: "2024-04-15", desktop: 120, mobile: 170 },
-  { date: "2024-04-16", desktop: 138, mobile: 190 },
-  { date: "2024-04-17", desktop: 446, mobile: 360 },
-  { date: "2024-04-18", desktop: 364, mobile: 410 },
-  { date: "2024-04-19", desktop: 243, mobile: 180 },
-  { date: "2024-04-20", desktop: 89, mobile: 150 },
-  { date: "2024-04-21", desktop: 137, mobile: 200 },
-  { date: "2024-04-22", desktop: 224, mobile: 170 },
-  { date: "2024-04-23", desktop: 138, mobile: 230 },
-  { date: "2024-04-24", desktop: 387, mobile: 290 },
-  { date: "2024-04-25", desktop: 215, mobile: 250 },
-  { date: "2024-04-26", desktop: 75, mobile: 130 },
-  { date: "2024-04-27", desktop: 383, mobile: 420 },
-  { date: "2024-04-28", desktop: 122, mobile: 180 },
-  { date: "2024-04-29", desktop: 315, mobile: 240 },
-  { date: "2024-04-30", desktop: 454, mobile: 380 },
-  { date: "2024-05-01", desktop: 165, mobile: 220 },
-  { date: "2024-05-02", desktop: 293, mobile: 310 },
-  { date: "2024-05-03", desktop: 247, mobile: 190 },
-  { date: "2024-05-04", desktop: 385, mobile: 420 },
-  { date: "2024-05-05", desktop: 481, mobile: 390 },
-  { date: "2024-05-06", desktop: 498, mobile: 520 },
-  { date: "2024-05-07", desktop: 388, mobile: 300 },
-  { date: "2024-05-08", desktop: 149, mobile: 210 },
-  { date: "2024-05-09", desktop: 227, mobile: 180 },
-  { date: "2024-05-10", desktop: 293, mobile: 330 },
-  { date: "2024-05-11", desktop: 335, mobile: 270 },
-  { date: "2024-05-12", desktop: 197, mobile: 240 },
-  { date: "2024-05-13", desktop: 197, mobile: 160 },
-  { date: "2024-05-14", desktop: 448, mobile: 490 },
-  { date: "2024-05-15", desktop: 473, mobile: 380 },
-  { date: "2024-05-16", desktop: 338, mobile: 400 },
-  { date: "2024-05-17", desktop: 499, mobile: 420 },
-  { date: "2024-05-18", desktop: 315, mobile: 350 },
-  { date: "2024-05-19", desktop: 235, mobile: 180 },
-  { date: "2024-05-20", desktop: 177, mobile: 230 },
-  { date: "2024-05-21", desktop: 82, mobile: 140 },
-  { date: "2024-05-22", desktop: 81, mobile: 120 },
-  { date: "2024-05-23", desktop: 252, mobile: 290 },
-  { date: "2024-05-24", desktop: 294, mobile: 220 },
-  { date: "2024-05-25", desktop: 201, mobile: 250 },
-  { date: "2024-05-26", desktop: 213, mobile: 170 },
-  { date: "2024-05-27", desktop: 420, mobile: 460 },
-  { date: "2024-05-28", desktop: 233, mobile: 190 },
-  { date: "2024-05-29", desktop: 78, mobile: 130 },
-  { date: "2024-05-30", desktop: 340, mobile: 280 },
-  { date: "2024-05-31", desktop: 178, mobile: 230 },
-  { date: "2024-06-01", desktop: 178, mobile: 200 },
-  { date: "2024-06-02", desktop: 470, mobile: 410 },
-  { date: "2024-06-03", desktop: 103, mobile: 160 },
-  { date: "2024-06-04", desktop: 439, mobile: 380 },
-  { date: "2024-06-05", desktop: 88, mobile: 140 },
-  { date: "2024-06-06", desktop: 294, mobile: 250 },
-  { date: "2024-06-07", desktop: 323, mobile: 370 },
-  { date: "2024-06-08", desktop: 385, mobile: 320 },
-  { date: "2024-06-09", desktop: 438, mobile: 480 },
-  { date: "2024-06-10", desktop: 155, mobile: 200 },
-  { date: "2024-06-11", desktop: 92, mobile: 150 },
-  { date: "2024-06-12", desktop: 492, mobile: 420 },
-  { date: "2024-06-13", desktop: 81, mobile: 130 },
-  { date: "2024-06-14", desktop: 426, mobile: 380 },
-  { date: "2024-06-15", desktop: 307, mobile: 350 },
-  { date: "2024-06-16", desktop: 371, mobile: 310 },
-  { date: "2024-06-17", desktop: 475, mobile: 520 },
-  { date: "2024-06-18", desktop: 107, mobile: 170 },
-  { date: "2024-06-19", desktop: 341, mobile: 290 },
-  { date: "2024-06-20", desktop: 408, mobile: 450 },
-  { date: "2024-06-21", desktop: 169, mobile: 210 },
-  { date: "2024-06-22", desktop: 317, mobile: 270 },
-  { date: "2024-06-23", desktop: 480, mobile: 530 },
-  { date: "2024-06-24", desktop: 132, mobile: 180 },
-  { date: "2024-06-25", desktop: 141, mobile: 190 },
-  { date: "2024-06-26", desktop: 434, mobile: 380 },
-  { date: "2024-06-27", desktop: 448, mobile: 490 },
-  { date: "2024-06-28", desktop: 149, mobile: 200 },
-  { date: "2024-06-29", desktop: 103, mobile: 160 },
-  { date: "2024-06-30", desktop: 446, mobile: 400 },
-]
+type Period = {
+  total_net_margin_eur: number;
+  row_count: number;
+  start_date: string;
+  end_date: string;
+};
+
+type MetricsResponse = {
+  currency: string;
+  periods: {
+    last_12_months: Period;
+    last_6_months: Period;
+    last_3_months: Period;
+    last_1_month: Period;
+  };
+  monthly_series_12m: {
+    month: string;
+    total_net_margin_eur: number;
+    sales_altona: number;
+  }[];
+  daily_series_3m: {
+    date: string;
+    total_net_margin_eur: number;
+    sales_altona: number;
+  }[];
+  daily_series_1m: {
+    date: string;
+    total_net_margin_eur: number;
+    sales_altona: number;
+  }[];
+  weekly_series_3m: {
+    week_start: string;
+    total_net_margin_eur: number;
+    sales_altona: number;
+  }[];
+  weekly_series_1m: {
+    week_start: string;
+    total_net_margin_eur: number;
+    sales_altona: number;
+  }[];
+};
+
+function formatCurrency(n: number, currency: string) {
+  try {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency,
+    }).format(n);
+  } catch {
+    return n.toLocaleString(undefined, { maximumFractionDigits: 2 });
+  }
+}
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  desktop: {
-    label: "Desktop",
+  net_margin: {
+    label: "Net margin (EUR)",
     color: "var(--primary)",
   },
-  mobile: {
-    label: "Mobile",
-    color: "var(--primary)",
+  sales_altona: {
+    label: "Sales (EUR)",
+    color: "var(--tertiary)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function ChartAreaInteractive() {
-  const isMobile = useIsMobile()
-  const [timeRange, setTimeRange] = React.useState("90d")
+  const isMobile = useIsMobile();
+  const [timeRange, setTimeRange] = React.useState<"12m" | "6m" | "3m" | "1m">(
+    "12m",
+  );
+  // Granularity only applies to 3m and 1m ranges
+  const [granularity, setGranularity] = React.useState<"daily" | "weekly">(
+    "daily",
+  );
+  const [metrics, setMetrics] = React.useState<MetricsResponse | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    if (isMobile) {
-      setTimeRange("7d")
-    }
-  }, [isMobile])
+    if (isMobile) setTimeRange("3m");
+  }, [isMobile]);
 
-  const filteredData = chartData.filter((item) => {
-    const date = new Date(item.date)
-    const referenceDate = new Date("2024-06-30")
-    let daysToSubtract = 90
-    if (timeRange === "30d") {
-      daysToSubtract = 30
-    } else if (timeRange === "7d") {
-      daysToSubtract = 7
+  React.useEffect(() => {
+    let cancelled = false;
+    async function fetchMetrics() {
+      try {
+        setLoading(true);
+        const res = await fetch("/api/metrics/net-margin", {
+          cache: "no-store",
+        });
+        if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+        const data: MetricsResponse = await res.json();
+        if (!cancelled) {
+          setMetrics(data);
+          setError(null);
+        }
+      } catch (e) {
+        if (!cancelled) {
+          setError(e instanceof Error ? e.message : String(e));
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
     }
-    const startDate = new Date(referenceDate)
-    startDate.setDate(startDate.getDate() - daysToSubtract)
-    return date >= startDate
-  })
+    fetchMetrics();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Reset granularity if switching to a range where weekly doesn't apply
+  React.useEffect(() => {
+    if (timeRange === "6m" || timeRange === "12m") {
+      setGranularity("daily");
+    }
+  }, [timeRange]);
+
+  const currency = metrics?.currency ?? "EUR";
+
+  // Removed unused monthsToShow variable (was previously computing months for slicing)
+
+  const filteredData = React.useMemo(() => {
+    if (!metrics) return [];
+    // Monthly ranges
+    if (timeRange === "12m" || timeRange === "6m") {
+      return (metrics.monthly_series_12m ?? [])
+        .slice(-(timeRange === "12m" ? 12 : 6))
+        .map((d) => ({
+          month: d.month,
+          net_margin: d.total_net_margin_eur,
+          sales_altona: d.sales_altona,
+        }));
+    }
+    // 3m range
+    if (timeRange === "3m") {
+      if (granularity === "weekly") {
+        return (metrics.weekly_series_3m ?? []).map((d) => ({
+          week_start: d.week_start,
+          net_margin: d.total_net_margin_eur,
+          sales_altona: d.sales_altona,
+        }));
+      }
+      return (metrics.daily_series_3m ?? []).map((d) => ({
+        date: d.date,
+        net_margin: d.total_net_margin_eur,
+        sales_altona: d.sales_altona,
+      }));
+    }
+    // 1m range
+    if (timeRange === "1m") {
+      if (granularity === "weekly") {
+        return (metrics.weekly_series_1m ?? []).map((d) => ({
+          week_start: d.week_start,
+          net_margin: d.total_net_margin_eur,
+          sales_altona: d.sales_altona,
+        }));
+      }
+      return (metrics.daily_series_1m ?? []).map((d) => ({
+        date: d.date,
+        net_margin: d.total_net_margin_eur,
+        sales_altona: d.sales_altona,
+      }));
+    }
+    return [];
+  }, [metrics, timeRange, granularity]);
+
+  const selectedTotal = React.useMemo(() => {
+    if (!metrics) return 0;
+    switch (timeRange) {
+      case "12m":
+        return metrics.periods.last_12_months.total_net_margin_eur;
+      case "6m":
+        return metrics.periods.last_6_months.total_net_margin_eur;
+      case "3m":
+        return metrics.periods.last_3_months.total_net_margin_eur;
+      case "1m":
+        return metrics.periods.last_1_month.total_net_margin_eur;
+      default:
+        return 0;
+    }
+  }, [metrics, timeRange]);
+
+  const rangeLabel: Record<"12m" | "6m" | "3m" | "1m", string> = {
+    "12m": "Last 12 months",
+    "6m": "Last 6 months",
+    "3m": "Last 3 months",
+    "1m": "Last month",
+  };
+
+  // Determine axis key and formatting
+  const axisKey =
+    timeRange === "12m" || timeRange === "6m"
+      ? "month"
+      : granularity === "weekly"
+        ? "week_start"
+        : "date";
 
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>Total Visitors</CardTitle>
+        <CardTitle>{formatCurrency(selectedTotal, currency)}</CardTitle>
         <CardDescription>
           <span className="hidden @[540px]/card:block">
-            Total for the last 3 months
+            Total net profit margin • {rangeLabel[timeRange]}
           </span>
-          <span className="@[540px]/card:hidden">Last 3 months</span>
+          <span className="@[540px]/card:hidden">{rangeLabel[timeRange]}</span>
         </CardDescription>
-        <CardAction>
+        <CardAction className="flex items-center gap-2">
           <ToggleGroup
             type="single"
             value={timeRange}
-            onValueChange={setTimeRange}
+            onValueChange={(v) => v && setTimeRange(v as typeof timeRange)}
             variant="outline"
             className="hidden *:data-[slot=toggle-group-item]:!px-4 @[767px]/card:flex"
           >
-            <ToggleGroupItem value="90d">Last 3 months</ToggleGroupItem>
-            <ToggleGroupItem value="30d">Last 30 days</ToggleGroupItem>
-            <ToggleGroupItem value="7d">Last 7 days</ToggleGroupItem>
+            <ToggleGroupItem value="12m">12m</ToggleGroupItem>
+            <ToggleGroupItem value="6m">6m</ToggleGroupItem>
+            <ToggleGroupItem value="3m">3m</ToggleGroupItem>
+            <ToggleGroupItem value="1m">1m</ToggleGroupItem>
           </ToggleGroup>
-          <Select value={timeRange} onValueChange={setTimeRange}>
+          <Select
+            value={timeRange}
+            onValueChange={(v) => setTimeRange(v as typeof timeRange)}
+          >
             <SelectTrigger
-              className="flex w-40 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
+              className="flex w-28 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
               size="sm"
-              aria-label="Select a value"
+              aria-label="Select a range"
             >
-              <SelectValue placeholder="Last 3 months" />
+              <SelectValue placeholder="12m" />
             </SelectTrigger>
             <SelectContent className="rounded-xl">
-              <SelectItem value="90d" className="rounded-lg">
-                Last 3 months
-              </SelectItem>
-              <SelectItem value="30d" className="rounded-lg">
-                Last 30 days
-              </SelectItem>
-              <SelectItem value="7d" className="rounded-lg">
-                Last 7 days
-              </SelectItem>
+              <SelectItem value="12m">12 months</SelectItem>
+              <SelectItem value="6m">6 months</SelectItem>
+              <SelectItem value="3m">3 months</SelectItem>
+              <SelectItem value="1m">1 month</SelectItem>
             </SelectContent>
           </Select>
+          {(timeRange === "3m" || timeRange === "1m") && (
+            <ToggleGroup
+              type="single"
+              value={granularity}
+              onValueChange={(v) =>
+                v && setGranularity(v as typeof granularity)
+              }
+              variant="outline"
+              className="*:data-[slot=toggle-group-item]:!px-3"
+            >
+              <ToggleGroupItem value="daily">Daily</ToggleGroupItem>
+              <ToggleGroupItem value="weekly">Weekly</ToggleGroupItem>
+            </ToggleGroup>
+          )}
         </CardAction>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
@@ -215,44 +293,53 @@ export function ChartAreaInteractive() {
         >
           <AreaChart data={filteredData}>
             <defs>
-              <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillNet" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--color-desktop)"
-                  stopOpacity={1.0}
+                  stopColor="var(--color-net_margin)"
+                  stopOpacity={0.85}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-desktop)"
-                  stopOpacity={0.1}
+                  stopColor="var(--color-net_margin)"
+                  stopOpacity={0.12}
                 />
               </linearGradient>
-              <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillSales" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--color-mobile)"
-                  stopOpacity={0.8}
+                  stopColor="var(--color-sales_altona)"
+                  stopOpacity={0.7}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-mobile)"
+                  stopColor="var(--color-sales_altona)"
                   stopOpacity={0.1}
                 />
               </linearGradient>
             </defs>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="date"
+              dataKey={axisKey}
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              minTickGap={32}
+              minTickGap={16}
               tickFormatter={(value) => {
-                const date = new Date(value)
+                const raw = String(value);
+                if (axisKey === "month") {
+                  const date = new Date(raw + "-01T00:00:00");
+                  return date.toLocaleDateString("en-US", {
+                    month: "short",
+                    year: "2-digit",
+                  });
+                }
+                // daily or weekly start
+                const date = new Date(raw + "T00:00:00");
                 return date.toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",
-                })
+                });
               }}
             />
             <ChartTooltip
@@ -260,32 +347,130 @@ export function ChartAreaInteractive() {
               content={
                 <ChartTooltipContent
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
-                      month: "short",
+                    const raw = String(value);
+                    if (axisKey === "month") {
+                      const date = new Date(raw + "-01T00:00:00");
+                      return date.toLocaleDateString("en-US", {
+                        month: "long",
+                        year: "numeric",
+                      });
+                    }
+                    const date = new Date(raw + "T00:00:00");
+                    if (granularity === "weekly") {
+                      return `Week of ${date.toLocaleDateString("en-US", {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric",
+                      })}`;
+                    }
+                    return date.toLocaleDateString("en-US", {
+                      month: "long",
                       day: "numeric",
-                    })
+                      year: "numeric",
+                    });
+                  }}
+                  formatter={(val, name, item) => {
+                    type ChartPoint = {
+                      month?: string;
+                      date?: string;
+                      week_start?: string;
+                      net_margin: number;
+                      sales_altona: number;
+                      [k: string]: unknown;
+                    };
+                    const valueNum =
+                      typeof val === "number" ? val : Number(val);
+                    const point = item?.payload as ChartPoint | undefined;
+                    const key =
+                      point &&
+                      (point.month || point.date || point.week_start
+                        ? point[axisKey as keyof ChartPoint]
+                        : undefined);
+                    let prevValue: number | undefined;
+                    if (key !== undefined) {
+                      const idx = filteredData.findIndex(
+                        (p: ChartPoint) =>
+                          (p as Record<string, unknown>)[axisKey] === key,
+                      );
+                      if (idx > 0) {
+                        const prevPoint = filteredData[idx - 1] as ChartPoint;
+                        prevValue = prevPoint[
+                          name === "Net margin (EUR)" || name === "net_margin"
+                            ? "net_margin"
+                            : "sales_altona"
+                        ] as number;
+                      }
+                    }
+                    let pct: string | null = null;
+                    if (
+                      prevValue !== undefined &&
+                      prevValue !== 0 &&
+                      Number.isFinite(prevValue)
+                    ) {
+                      const change =
+                        ((valueNum - prevValue) / Math.abs(prevValue)) * 100;
+                      pct = `${change >= 0 ? "+" : ""}${change.toFixed(1)}%`;
+                    }
+                    return (
+                      <span className="flex flex-col text-foreground">
+                        <span className="flex items-center gap-2">
+                          <span
+                            className="h-2.5 w-2.5 shrink-0 rounded-[2px]"
+                            style={{
+                              backgroundColor: (item as { color?: string })
+                                ?.color,
+                            }}
+                          />
+                          <span className="font-mono font-medium tabular-nums">
+                            {formatCurrency(
+                              Number.isFinite(valueNum) ? valueNum : 0,
+                              currency,
+                            )}
+                          </span>
+                        </span>
+                        {pct && (
+                          <span className="text-xs text-muted-foreground">
+                            {pct} vs prev
+                          </span>
+                        )}
+                      </span>
+                    );
                   }}
                   indicator="dot"
                 />
               }
             />
+
             <Area
-              dataKey="mobile"
-              type="natural"
-              fill="url(#fillMobile)"
-              stroke="var(--color-mobile)"
-              stackId="a"
+              dataKey="net_margin"
+              type="monotone"
+              fill="url(#fillNet)"
+              stroke="var(--color-net_margin)"
             />
+
             <Area
-              dataKey="desktop"
-              type="natural"
-              fill="url(#fillDesktop)"
-              stroke="var(--color-desktop)"
-              stackId="a"
+              dataKey="sales_altona"
+              type="monotone"
+              fill="url(#fillSales)"
+              stroke="var(--color-sales_altona)"
+            />
+
+            <ChartLegend
+              verticalAlign="bottom"
+              content={<ChartLegendContent />}
             />
           </AreaChart>
         </ChartContainer>
+        {loading && (
+          <div className="text-muted-foreground mt-2 text-xs">Loading…</div>
+        )}
+        {error && !loading && (
+          <div className="text-destructive mt-2 text-xs">Error: {error}</div>
+        )}
+        {!loading && !error && filteredData.length === 0 && (
+          <div className="text-muted-foreground mt-2 text-xs">No data</div>
+        )}
       </CardContent>
     </Card>
-  )
+  );
 }

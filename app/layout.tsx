@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-// import { Geist } from "next/font/google";
-import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import "./globals.css";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 
 export const metadata: Metadata = {
   title: "Overview Dashboard",
@@ -11,12 +10,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="dark">
-      <body className="bg-background text-foreground">
+      <body
+        className={[
+          // Expose CSS variables so Tailwind's font-sans and font-mono map to Geist fonts
+          GeistSans.variable,
+          GeistMono.variable,
+          // Use sans as the default body font
+          "font-sans",
+          "bg-background",
+          "text-foreground",
+        ].join(" ")}
+      >
         <main className="overflow-auto scrollbar-auto-hide scrollbar-overlay">
           {children}
         </main>

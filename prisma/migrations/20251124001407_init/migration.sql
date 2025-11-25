@@ -1,0 +1,26 @@
+-- CreateTable
+CREATE TABLE "sales_transactions" (
+    "transaction_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "commercial_responsible" TEXT NOT NULL,
+    "order_type" TEXT NOT NULL,
+    "supplier" TEXT NOT NULL,
+    "billing_sign" TEXT,
+    "delivery_client" TEXT NOT NULL,
+    "delivery_circuit" TEXT NOT NULL,
+    "product_category" TEXT NOT NULL,
+    "product_family" TEXT NOT NULL,
+    "product_reference" TEXT NOT NULL,
+    "delivery_date" DATETIME NOT NULL,
+    "quantity" DECIMAL,
+    "sales_altona" DECIMAL,
+    "purchases_altona_eur" DECIMAL,
+    "purchases_purchase_currency" DECIMAL,
+    "purchase_currency" TEXT,
+    "direct_sales" DECIMAL NOT NULL,
+    "commission_altona" DECIMAL NOT NULL,
+    "total_pub_budget" DECIMAL,
+    "rfa_on_resale_orders" DECIMAL,
+    "logistics_cost_altona" DECIMAL,
+    "prescriber_commission" DECIMAL,
+    "total_net_margin_eur" DECIMAL NOT NULL
+);
