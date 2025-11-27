@@ -30,6 +30,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { IconExclamationCircleFilled } from "@tabler/icons-react";
 
 export const description = "An interactive area chart for net profit margin";
 
