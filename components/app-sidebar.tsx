@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import {
+  IconBuildings,
   IconChartBar,
   IconDashboard,
   IconDatabase,
@@ -33,19 +34,19 @@ const data = {
     },
     {
       title: "Analytics",
-      url: "#",
+      url: "/analytics",
       icon: IconChartBar,
     },
   ],
   navSecondary: [
     {
       title: "Settings",
-      url: "#",
+      url: "/settings",
       icon: IconSettings,
     },
     {
       title: "Get Help",
-      url: "#",
+      url: "/help",
       icon: IconHelp,
     },
   ],
@@ -73,8 +74,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
-              <a href="#">
-                <IconInnerShadowTop className="size-5!" />
+              <a href="/">
+                <IconBuildings className="size-5!" />
                 <span className="text-base font-semibold">Altona</span>
               </a>
             </SidebarMenuButton>
