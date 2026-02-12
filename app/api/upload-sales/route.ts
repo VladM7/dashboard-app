@@ -235,7 +235,6 @@ export async function POST(req: Request) {
     // Replace existing data entirely
     await prisma.sales_transactions.deleteMany();
     const result = await prisma.sales_transactions.createMany({
-      // @ts-expect-error Temporary suppression until Prisma client is regenerated without row_hash and types align
       data: rows,
     });
 

@@ -1,4 +1,4 @@
-import { Dropzone } from "../components/dropzone";
+import { Dropzone } from "@/components/upload/dropzone";
 import { SiteHeader } from "@/components/site-header";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";

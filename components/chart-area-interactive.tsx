@@ -30,6 +30,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { IconExclamationCircleFilled } from "@tabler/icons-react";
 
 export const description = "An interactive area chart for net profit margin";
 
@@ -245,7 +246,7 @@ export function ChartAreaInteractive() {
             value={timeRange}
             onValueChange={(v) => v && setTimeRange(v as typeof timeRange)}
             variant="outline"
-            className="hidden *:data-[slot=toggle-group-item]:!px-4 @[767px]/card:flex"
+            className="hidden *:data-[slot=toggle-group-item]:px-4! @[767px]/card:flex"
           >
             <ToggleGroupItem value="12m">12m</ToggleGroupItem>
             <ToggleGroupItem value="6m">6m</ToggleGroupItem>
@@ -278,7 +279,7 @@ export function ChartAreaInteractive() {
                 v && setGranularity(v as typeof granularity)
               }
               variant="outline"
-              className="*:data-[slot=toggle-group-item]:!px-3"
+              className="*:data-[slot=toggle-group-item]:px-3!"
             >
               <ToggleGroupItem value="daily">Daily</ToggleGroupItem>
               <ToggleGroupItem value="weekly">Weekly</ToggleGroupItem>
