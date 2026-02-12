@@ -13,7 +13,7 @@ A Next.js + Electron dashboard application with Prisma and a local SQLite databa
 
 ## Install
 
-```/dev/null/install.sh#L1-1
+```
 npm install
 ```
 
@@ -23,7 +23,7 @@ npm install
 
 ### Web (Next.js only)
 
-```/dev/null/dev-web.sh#L1-1
+```
 npm run dev
 ```
 
@@ -32,7 +32,7 @@ For non-localhost deployments, use `https://` to keep data in transit secure.
 
 ### Desktop (Electron + Next.js)
 
-```/dev/null/dev-electron.sh#L1-1
+```
 npm run dev:electron
 ```
 
@@ -44,13 +44,13 @@ This starts Next.js and launches the Electron shell once the app is ready.
 
 ### Web build
 
-```/dev/null/build-web.sh#L1-1
+```
 npm run build
 ```
 
 ### Desktop distributable (not fully working yet)
 
-```/dev/null/build-desktop.sh#L1-1
+```
 npm run dist
 ```
 
@@ -71,7 +71,6 @@ npm run dist
 ## Project Structure
 
 ```
-/dev/null/structure.txt#L1-16
 app/            Next.js app router pages/layouts
 components/     UI components and shared building blocks
 hooks/          Custom React hooks
